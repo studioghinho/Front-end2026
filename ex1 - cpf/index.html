@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar CPF</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style>
+    body{
+        text-align: center;
+        padding: 0px;
+        margin: 0px;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        display: flex;
+    }
+
+    .card-body{
+        background-color: lightblue;
+        align-items: center;
+        text-align: center;
+    }
+
+</style>
+</head>
+<body>
+    <div class="card w-96 bg-base-100 card-md shadow-sm">
+  <div class="card-body">
+    <h2 class="card-title"> Validador de CPF </h2>
+    <label for="cpf"> </label>
+    <input type="text" id="cpf" placeholder="digite um cpf:">
+    <div class="justify-end card-actions">
+      <button id="botao" class="btn btn-primary">Enviar</button>
+      <div id="mensagem"> </div>
+    </div>
+  </div>
+</div>
+    <script src="script.js"> </script>
+</body>
+</html>

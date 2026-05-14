@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinity Bank – Simulador de Vendas</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style> 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #0f0f1a;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 0.25rem;
+}
+
+.logo-icon {
+  font-size: 2.2rem;
+  color: #a78bfa;
+  line-height: 1;
+}
+
+.logo-nome {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #f0f0ff;
+  letter-spacing: 0.02em;
+}
+
+.logo-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: #7c7c9a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Card do formulário */
+.card {
+  background-color: #1a1a2e;
+  border: 1px solid #2e2e4a;
+  border-radius: 14px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #9090b0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+select,
+input[type="number"] {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  font-size: 1rem;
+  color: #f0f0ff;
+  background-color: #121220;
+  border: 1.5px solid #2e2e4a;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+select:focus,
+input[type="number"]:focus {
+  border-color: #a78bfa;
+}
+
+select option {
+  background-color: #1a1a2e;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  background-color: #121220;
+  border: 1.5px solid #2e2e4a;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.input-wrap:focus-within {
+  border-color: #a78bfa;
+}
+
+.prefix {
+  padding: 0 0.75rem;
+  font-size: 0.95rem;
+  color: #7c7c9a;
+  border-right: 1px solid #2e2e4a;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.input-wrap input {
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  flex: 1;
+}
+
+.input-wrap input:focus {
+  border: none;
+  outline: none;
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Resultado */
+.resultado {
+  background-color: #1a1a2e;
+  border: 1px solid #2e2e4a;
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.resultado.oculto {
+  display: none;
+}
+
+.resultado-titulo {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #7c7c9a;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.1rem;
+}
+
+.resumo-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resumo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resumo-label {
+  font-size: 0.9rem;
+  color: #7c7c9a;
+}
+
+.resumo-valor {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f0f0ff;
+}
+
+.resumo-valor.roxo   { color: #a78bfa; }
+.resumo-valor.laranja { color: #fb923c; }
+.resumo-valor.negrito { font-size: 1rem; color: #f0f0ff; }
+
+.borda-topo {
+  border-top: 1px solid #2e2e4a;
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.destaque-parcela {
+  background-color: #12122080;
+  border: 1px solid #3b2f6e;
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  margin-top: 0.25rem;
+}
+
+.resumo-valor.grande {
+  font-size: 1.35rem;
+  color: #a78bfa;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <header class="header">
+      <span class="logo-icon">∞</span>
+      <div>
+        <span class="logo-nome">Infinity Bank</span>
+        <span class="logo-sub">Simulador de Vendas</span>
+      </div>
+    </header>
+
+    <div class="card">
+
+      <div class="campo">
+        <label for="bandeira">Bandeira do cartão</label>
+        <select id="bandeira">
+          <option value="">Selecione a bandeira</option>
+          <option value="visa">Visa (taxa 2%)</option>
+          <option value="master">Mastercard (taxa 1,85%)</option>
+          <option value="elo">Elo (taxa 3%)</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="valor">Valor da venda (R$)</label>
+        <div class="input-wrap">
+          <span class="prefix">R$</span>
+          <input type="number" id="valor" placeholder="0,00" min="0" step="0.01">
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="parcelas">Número de parcelas</label>
+        <select id="parcelas">
+          <option value="1">1x (à vista)</option>
+          <option value="2">2x</option>
+          <option value="3">3x</option>
+          <option value="4">4x</option>
+          <option value="5">5x</option>
+          <option value="6">6x</option>
+          <option value="7">7x</option>
+          <option value="8">8x</option>
+          <option value="9">9x</option>
+          <option value="10">10x</option>
+          <option value="11">11x</option>
+          <option value="12">12x</option>
+        </select>
+      </div>
+
+      <button id="btn-simular">Simular agora</button>
+
+    </div>
+
+    <div id="resultado" class="resultado oculto">
+      <h2 class="resultado-titulo">Resumo da simulação</h2>
+
+      <div class="resumo-grid">
+        <div class="resumo-item">
+          <span class="resumo-label">Valor da venda</span>
+          <span class="resumo-valor" id="res-venda">—</span>
+        </div>
+        <div class="resumo-item">
+          <span class="resumo-label">Taxa da bandeira</span>
+          <span class="resumo-valor roxo" id="res-taxa">—</span>
+        </div>
+        <div class="resumo-item">
+          <span class="resumo-label">Juros totais</span>
+          <span class="resumo-valor laranja" id="res-juros">—</span>
+        </div>
+        <div class="resumo-item">
+          <span class="resumo-label" id="res-mensal-label">Taxa mensal</span>
+          <span class="resumo-valor laranja" id="res-mensal">—</span>
+        </div>
+        <div class="resumo-item borda-topo">
+          <span class="resumo-label">Valor total</span>
+          <span class="resumo-valor negrito" id="res-total">—</span>
+        </div>
+        <div class="resumo-item destaque-parcela">
+          <span class="resumo-label" id="res-parcela-label">Valor de cada parcela</span>
+          <span class="resumo-valor grande" id="res-parcela">—</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

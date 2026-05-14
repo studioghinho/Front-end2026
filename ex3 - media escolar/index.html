@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boletim Escolar</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ 
+body {
+  font-family: sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+ 
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+ 
+h1 {
+  font-size: 1.4rem;
+  color: #1a1a2e;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+ 
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+ 
+label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+}
+ 
+input {
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+ 
+input:focus {
+  border-color: #4a6cf7;
+}
+ 
+button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  background-color: #4a6cf7;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+ 
+button:hover {
+  background-color: #3a5be0;
+}
+ 
+.resultado {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+ 
+.resultado.oculto {
+  display: none;
+}
+ 
+.aprovado {
+  background-color: #dbeafe;
+  border: 1.5px solid #93c5fd;
+  color: #1e40af;
+}
+ 
+.exame {
+  background-color: #dcfce7;
+  border: 1.5px solid #86efac;
+  color: #166534;
+}
+ 
+.reprovado {
+  background-color: #fee2e2;
+  border: 1.5px solid #fca5a5;
+  color: #991b1b;
+}
+ 
+.resultado strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Boletim Escolar</h1>
+
+    <div class="campo">
+      <label for="nome">Nome do aluno</label>
+      <input type="text" id="nome" placeholder="Digite o nome">
+    </div>
+
+    <div class="campo">
+      <label for="nota1">Nota 1</label>
+      <input type="number" id="nota1" placeholder="0.0" min="0" max="10" step="0.1">
+    </div>
+
+    <div class="campo">
+      <label for="nota2">Nota 2</label>
+      <input type="number" id="nota2" placeholder="0.0" min="0" max="10" step="0.1">
+    </div>
+
+    <div class="campo">
+      <label for="nota3">Nota 3</label>
+      <input type="number" id="nota3" placeholder="0.0" min="0" max="10" step="0.1">
+    </div>
+
+    <button id="btn-calcular">Calcular</button>
+
+    <div id="resultado" class="resultado oculto"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

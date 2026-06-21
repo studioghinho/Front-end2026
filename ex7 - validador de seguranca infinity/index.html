@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validador de Cartão (Algoritmo de Luhn)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <header class="header">
+      <span class="icone">💳</span>
+      <div>
+        <span class="titulo">Validador de Cartão</span>
+        <span class="subtitulo">Verificação via Algoritmo de Luhn</span>
+      </div>
+    </header>
+
+    <div class="card">
+
+      <div class="campo">
+        <label for="numero">Número do cartão</label>
+        <input
+          type="text"
+          id="numero"
+          placeholder="0000 0000 0000 0000"
+          maxlength="19">
+        <span class="ajuda">Aceita até 16 dígitos (espaços e pontos são ignorados)</span>
+      </div>
+
+      <button id="btn-analisar">Analisar Cartão</button>
+
+    </div>
+
+    <div id="resultado" class="resultado oculto">
+      <h2 class="resultado-titulo">Painel de Info</h2>
+
+      <div class="resumo-grid">
+        <div class="resumo-item">
+          <span class="resumo-label">Status</span>
+          <span class="resumo-valor" id="res-status">—</span>
+        </div>
+        <div class="resumo-item">
+          <span class="resumo-label">Bandeira</span>
+          <span class="resumo-valor" id="res-bandeira">—</span>
+        </div>
+        <div class="resumo-item">
+          <span class="resumo-label">Quantidade de dígitos</span>
+          <span class="resumo-valor" id="res-digitos">—</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
